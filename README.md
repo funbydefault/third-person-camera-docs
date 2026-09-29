@@ -115,15 +115,17 @@ Manual look takes priority while the requested view is clear. Collision may stil
 
 Drag the camera component into your Blueprint graph as a reference. From it, add **Set Focus Target** and connect your target Actor to **New Target**. Use **Socket Name** for an optional skeletal-mesh socket; a missing socket falls back to the actor location.
 
-Connect your release action to **Clear Focus Target**. **Get Focus Target** returns the current live target, or None after clear or destruction. Clearing blends back from the current rendered orientation and leaves controller aim unchanged.
+Connect your release action to **Clear Focus Target**. **Get Focus Target** returns the current live target, or None after clear or destruction. Clearing blends from the current rendered view back to free orbit and keeps the attained orbit angle. Controller aim stays unchanged unless **Write Automated Rotation to Controller** is enabled.
 
 | Focus setting | Purpose |
 |---|---|
-| **Focus Blend Speed** | Control acquisition/release response for aim, distance and FOV. Default: 6; zero is immediate. |
+| **Focus Blend Speed** | Control automatic focus orbit placement and acquisition/release response for aim, distance and FOV. Default: 6; zero is immediate. |
 | **Focus Framing Bias** | Bias the look point from target (0) toward player (1). Default: 0.35. |
-| **Enable Focus Auto Framing** | Extend the boom and, when needed, widen FOV to try to fit both subjects. |
+| **Enable Focus Auto Framing** | Ease the orbit behind the player relative to the target, then adjust distance and FOV to help fit both subjects. |
 | **Focus Subject Radius / Focus Screen Margin** | Reserve space around subjects and screen edges. |
 | **Focus Max Arm Length / Focus Max Field Of View** | Cap automatic distance and FOV. Defaults: 1200 cm and 100 degrees. |
+
+Automatic focus placement preserves your orbit pitch. Manual look pauses placement; it resumes after 0.25 seconds without look input. Disabling **Enable Focus Auto Framing** keeps focus aim while leaving orbit placement manual. Obstruction can pause automatic placement or require camera pull-in.
 
 Your game supplies target search, range checks, visibility checks, cycling and combat rules. Focus does not implement aim assist or replication. Collision and the distance/FOV caps can prevent both subjects from fitting; character framing takes priority. There is no separate target-position smoothing setting.
 
