@@ -6,6 +6,8 @@
 
 Start with the plugin installed for your Unreal Engine version and a playable **Character or Pawn Blueprint** with movement and look input. No C++ is required for this setup.
 
+The example animations use Unreal’s built-in **ACLPlugin** and the editor-only **AnimationData** and **IKRig** dependencies. Enabling Third Person Action Camera enables these declared dependencies automatically; no separate download is needed.
+
 1. Open **Edit → Plugins**, find **Third Person Action Camera**, enable it and restart the editor if requested.
 2. Open your player Blueprint. In **Components**, deactivate its existing Camera by clearing **Auto Activate**, or remove the old **Spring Arm + Camera** pair. Keep any other cameras inactive until your game explicitly switches to them.
 3. Select the Capsule Component or another stable root component. Choose **Add → Third Person Camera**. The new component replaces both the boom and camera. Leave **Auto Activate** enabled and its inherited **Use Pawn Control Rotation** disabled.
